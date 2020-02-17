@@ -1,0 +1,23 @@
+<h1>List of restaurants</h1>
+
+<ul>
+  {{#each restaurants}}
+  <li>
+    <article>
+      <h2>Name: {{this.name}}</h2>
+      <p>Description: {{this.description}}</p>
+      <p>Lat: {{this.location.coordinates.[0]}}</p>
+      <p>Lat: {{this.location.coordinates.[1]}}</p>
+    </article>
+  </li>
+  {{/each}}
+</ul>
+
+
+<div id='map' style='width: 800px; height: 600px;'></div>
+
+
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+<script async defer src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+<script async defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/javascripts/mapbox.js"></script>
