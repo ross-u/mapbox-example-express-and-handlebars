@@ -5,7 +5,7 @@ const router = express.Router();
 
 const Restaurants = require('../models/restaurant');
 
-/* GET home page. */
+// GET      /   Render home page with the restaurants map */
 router.get('/', (req, res, next) => {
   Restaurants.find()
     .then((restaurants) => {

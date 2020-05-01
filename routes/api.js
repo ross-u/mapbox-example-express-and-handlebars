@@ -5,7 +5,7 @@ const router = express.Router();
 
 const Restaurants = require('../models/restaurant');
 
-/* GET users listing. */
+// GET  /api/restaurants     -  Get restaurants listing.
 router.get('/restaurants', function (req, res, next) {
   Restaurants.find()
     .then(restaurants => res.json(restaurants))
