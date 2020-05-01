@@ -1,5 +1,4 @@
 "use strict";
-
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -10,30 +9,33 @@ const indexRouter = require("./routes/index");
 const apiRouter = require("./routes/api");
 
 const app = express();
+const DB_NAME = "mapbox-example"; 
 
-mongoose.connect("mongodb://localhost/mapbox-example", {
-  keepAlive: true,
-  useNewUrlParser: true,
-  reconnectTries: Number.MAX_VALUE,
-  useUnifiedTopology: true
-});
+mongoose.connect(
+  `mongodb://localhost:27017/${DB_NAME}`, 
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
+// MIDDLEWARE
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// ROUTES
 app.use("/", indexRouter);
 app.use("/api", apiRouter);
 
+// ERROR HANDLERS
 // -- 404 and error handler
-
-// NOTE: requires a views/not-found.ejs template
 app.use((req, res, next) => {
   res.status(404);
   res.render("not-found");
