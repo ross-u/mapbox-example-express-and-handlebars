@@ -1,4 +1,7 @@
 "use strict";
+
+require("dotenv").config();
+
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -9,15 +12,14 @@ const indexRouter = require("./routes/index");
 const apiRouter = require("./routes/api");
 
 const app = express();
-const DB_NAME = "mapbox-example"; 
+const { DB_NAME } = process.env; // Get the DB_NAME value stored in .env file
 
-mongoose.connect(
-  `mongodb://localhost:27017/${DB_NAME}`, 
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
-);
+// MONGOOSE CONNECTION
+mongoose.connect(`mongodb://localhost:27017/${DB_NAME}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+});
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

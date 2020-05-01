@@ -1,18 +1,10 @@
 "use strict";
 
+require('dotenv').config();
 const mongoose = require("mongoose");
-
 const Restaurant = require("../models/restaurant");
 
-const DB_NAME = "mapbox-example"; 
-
-mongoose.connect(
-  `mongodb://localhost:27017/${DB_NAME}`, 
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
-);
+const { DB_NAME } = process.env; // Get the DB_NAME value stored in .env file
 
 const restaurants = [
   {
@@ -33,9 +25,17 @@ const restaurants = [
   }
 ];
 
-Restaurant.insertMany(restaurants)
-  .then(() => {
-    console.log("Restaurants Created");
-    mongoose.connection.close();
-  })
-  .catch(err => console.error(err));
+mongoose.connect(
+  `mongodb://localhost:27017/${DB_NAME}`, 
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
+)
+.then( (x) => {
+  console.log(`Connected to DB: ${x.connections[0].name}`);
+  return x.connection.dropDatabase();
+})
+.then( () =>  Restaurant.insertMany(restaurants))
+.then((createdRestaurants) => {
+  console.log("Restaurants Created:", createdRestaurants.length);
+  return mongoose.connection.close();
+})
+.catch( (err) => console.log(err));
