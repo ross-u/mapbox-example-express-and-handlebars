@@ -4,11 +4,15 @@ const mongoose = require("mongoose");
 
 const Restaurant = require("../models/restaurant");
 
-mongoose.connect("mongodb://localhost/mapbox-example", {
-  keepAlive: true,
-  useNewUrlParser: true,
-  reconnectTries: Number.MAX_VALUE
-});
+const DB_NAME = "mapbox-example"; 
+
+mongoose.connect(
+  `mongodb://localhost:27017/${DB_NAME}`, 
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
 
 const restaurants = [
   {
