@@ -1,6 +1,10 @@
 # Using Mapbox GL JS with Express and Handlebars
 
-<hr>
+<br>
+![](https://i.imgur.com/DZPGE8A.png)
+![](https://i.imgur.com/0rZiVzT.png)
+
+<br>
 
 ### [Create a Mapbox account](https://www.mapbox.com/)
 
