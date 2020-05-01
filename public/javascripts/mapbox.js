@@ -1,19 +1,16 @@
 "use strict";
-
 // Mapbox Docs example - https://docs.mapbox.com/mapbox-gl-js/example/simple-map/
 
-const main = () => {
-  mapboxgl.accessToken =
-    "pk.eyJ1IjoibmNvZGVyOTIiLCJhIjoiY2pkbmRmdno4MGQ2ODJ4bWtxcG02dnk1ciJ9.DehQETKEOyrOha4hqclYvg";
-  const map = new mapboxgl.Map({
-    container: "map", // container id
-    center: [2.0787281, 41.3948976], // starting position [lng, lat]
-    zoom: 12, // starting zoom
-    style: "mapbox://styles/mapbox/dark-v10" // stylesheet location
+const MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoibmNvZGVyOTIiLCJhIjoiY2pkbmRmdno4MGQ2ODJ4bWtxcG02dnk1ciJ9.DehQETKEOyrOha4hqclYvg";
 
-    // style: "mapbox://styles/mapbox/light-v10"
-    // style: "mapbox://styles/mapbox/streets-v11"
-    // style: "mapbox://styles/mapbox/satellite-v9"
+const main = () => {
+  mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+
+  const map = new mapboxgl.Map({
+    container: "map",
+    center: [2.0787281, 41.3948976],
+    zoom: 12,
+    style: "mapbox://styles/mapbox/dark-v10" //    /light-v10     /streets-v11     /satellite-v9
   });
 
   if (navigator.geolocation) {
@@ -33,7 +30,7 @@ const main = () => {
     .then(result => {
       result.data.forEach(restaurant => {
         new mapboxgl.Marker()
-          .setLngLat(restaurant.location.coordinates.reverse()) // reverse the order of Lat and Lng
+          .setLngLat(restaurant.location.coordinates.reverse())
           // .setLngLat(restaurant.location.coordinates)
           .addTo(map);
       });

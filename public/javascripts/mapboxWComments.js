@@ -1,12 +1,13 @@
 "use strict";
 
+const MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoibmNvZGVyOTIiLCJhIjoiY2pkbmRmdno4MGQ2ODJ4bWtxcG02dnk1ciJ9.DehQETKEOyrOha4hqclYvg";
 // Mapbox Docs example - https://docs.mapbox.com/mapbox-gl-js/example/simple-map/
 
 // This function is run on window 'load' event, once all scripts in the html file are loaded
 const main = () => {
   // Set the Mapbox API access token
-  mapboxgl.accessToken =
-    "pk.eyJ1IjoibmNvZGVyOTIiLCJhIjoiY2pkbmRmdno4MGQ2ODJ4bWtxcG02dnk1ciJ9.DehQETKEOyrOha4hqclYvg";
+  mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+  
   const map = new mapboxgl.Map({
     container: "map", // container id
     center: [2.0787281, 41.3948976], // starting position [lng, lat]
