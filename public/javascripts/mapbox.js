@@ -1,7 +1,6 @@
 "use strict";
 
-const MAPBOX_ACCESS_TOKEN =
-  "pk.eyJ1IjoibmNvZGVyOTIiLCJhIjoiY2pkbmRmdno4MGQ2ODJ4bWtxcG02dnk1ciJ9.DehQETKEOyrOha4hqclYvg";
+const MAPBOX_ACCESS_TOKEN = "ADD YOUR ACCESS TOKEN HERE";
 
 const main = () => {
   mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
